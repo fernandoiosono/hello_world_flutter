@@ -10,7 +10,7 @@ class CounterFunctionsScreen extends StatefulWidget {
 
 class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
   int clickCounter = 0;
-  String clickLabel = 'Click';
+  String get clickLabel => clickCounter == 1 ? 'Click' : 'Clicks';
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +46,17 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           CustomFloatingButton(
+            icon: Icons.refresh_rounded,
+            onPressed: () => setState(() {
+              clickCounter = 0;
+            })
+          ),
+          const SizedBox(height: 10), // Separación entre los Botones
+          CustomFloatingButton(
             icon: Icons.plus_one,
-            onPressed: () {
-              setState(() {
-                clickCounter++;
-                clickLabel = (clickCounter == 1 ? 'Click' : 'Clicks');
-              });
-            },
+            onPressed: () => setState(() {
+              clickCounter++;
+            })
           ),
           const SizedBox(height: 10), // Separación entre los Botones
           CustomFloatingButton(
@@ -61,7 +65,6 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
               if (clickCounter > 0) {
                 setState(() {
                   clickCounter--;
-                  clickLabel = (clickCounter == 1 ? 'Click' : 'Clicks');
                 });
               }
             },

@@ -12,12 +12,22 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
   int clickCounter = 0;
   String get clickLabel => clickCounter == 1 ? 'Click' : 'Clicks';
 
+  void _resetCounter() => setState(() => clickCounter = 0);
+
+  void _incrementCounter() => setState(() => clickCounter++);
+
+  void _decrementCounter() {
+    if (clickCounter == 0) return;
+
+    setState(() => clickCounter--);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Counter Functions',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -37,7 +47,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             ),
             Text(
               clickLabel,
-              style: TextStyle(fontSize: 25),
+              style: const TextStyle(fontSize: 25),
             ),
           ],
         ),
@@ -47,27 +57,17 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
         children: [
           CustomFloatingButton(
             icon: Icons.refresh_rounded,
-            onPressed: () => setState(() {
-              clickCounter = 0;
-            })
+            onPressed: _resetCounter,
           ),
           const SizedBox(height: 10), // Separación entre los Botones
           CustomFloatingButton(
             icon: Icons.plus_one,
-            onPressed: () => setState(() {
-              clickCounter++;
-            })
+            onPressed: _incrementCounter
           ),
           const SizedBox(height: 10), // Separación entre los Botones
           CustomFloatingButton(
             icon: Icons.exposure_minus_1_outlined,
-            onPressed: () {
-              if (clickCounter > 0) {
-                setState(() {
-                  clickCounter--;
-                });
-              }
-            },
+            onPressed: _decrementCounter
           ),
         ],
       ),

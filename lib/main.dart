@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world_flutter/presentation/screens/hello_world_screen.dart';
-// import 'package:hello_world_flutter/presentation/screens/counter/counter_screen.dart';
+// import 'package:hello_world_flutter/presentation/screens/hello_world_screen.dart';
+import 'package:hello_world_flutter/presentation/screens/counter/counter_screen.dart';
 // import 'package:hello_world_flutter/presentation/screens/counter/counter_functions_screen.dart';
 
 void main() {
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: Colors.blue
       ),
-      home: const HelloWorldScreen(),
-      // home: const CounterFunctionsScreen(),
+      // home: const HelloWorldScreen()
+      home: const CounterScreen()
       // home: const CounterFunctionsScreen()
     );
   }

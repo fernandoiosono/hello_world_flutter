@@ -18,7 +18,21 @@ class _CounterScreenState extends State<CounterScreen> {
           fontWeight: FontWeight.bold,
           color: Colors.white
         ),)),
-        backgroundColor: Colors.blue
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh_rounded),
+            onPressed: () {
+              setState(() {
+                clickCounter = 0;
+              });
+            },
+          ),
+        ],
+        // leading: IconButton( // Para ubicar los iconos del lado izquierdo del title
+        //   icon: Icon(Icons.refresh_rounded),
+        //   onPressed: () {}
+        // ),
       ),
       body: Center( // Centrado Horizontal
         child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world_flutter/presentation/widgets/custom_floating_button_widget.dart';
 
 class CounterFunctionsScreen extends StatefulWidget {
   const CounterFunctionsScreen({super.key});
@@ -9,32 +10,18 @@ class CounterFunctionsScreen extends StatefulWidget {
 
 class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
   int clickCounter = 0;
+  String clickLabel = 'Click';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Counter Functions',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
+        centerTitle: true,
+        title: Text(
+          'Counter Functions',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh_rounded),
-            onPressed: () {
-              setState(() {
-                clickCounter = 0;
-              });
-            },
-          ),
-        ],
-        // leading: IconButton( // Para ubicar los iconos del lado izquierdo del title
-        //   icon: Icon(Icons.refresh_rounded),
-        //   onPressed: () {}
-        // ),
+        backgroundColor: Colors.blue
       ),
       body: Center(
         // Centrado Horizontal
@@ -49,7 +36,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
               ),
             ),
             Text(
-              'Click${clickCounter == 1 ? '' : 's'}',
+              clickLabel,
               style: TextStyle(fontSize: 25),
             ),
           ],
@@ -58,39 +45,29 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          CustomFloatingActionButton(icon: Icons.plus_one),
+          CustomFloatingButton(
+            icon: Icons.plus_one,
+            onPressed: () {
+              setState(() {
+                clickCounter++;
+                clickLabel = (clickCounter == 1 ? 'Click' : 'Clicks');
+              });
+            },
+          ),
           const SizedBox(height: 10), // Separación entre los Botones
-          CustomFloatingActionButton(icon: Icons.exposure_minus_1_outlined),
+          CustomFloatingButton(
+            icon: Icons.exposure_minus_1_outlined,
+            onPressed: () {
+              if (clickCounter > 0) {
+                setState(() {
+                  clickCounter--;
+                  clickLabel = (clickCounter == 1 ? 'Click' : 'Clicks');
+                });
+              }
+            },
+          ),
         ],
       ),
-    );
-  }
-}
-
-class CustomFloatingActionButton extends StatelessWidget {
-  final IconData icon;
-
-  const CustomFloatingActionButton({
-    super.key, 
-    required this.icon
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      shape: const StadiumBorder(),
-      onPressed: () {
-        // clickCounter++;
-
-        // setState(() {});
-
-        // if (clickCounter > 0) {
-        //   clickCounter--;
-
-        //   setState(() {});
-        // }
-      },
-      child: Icon(icon),
     );
   }
 }

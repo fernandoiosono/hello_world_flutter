@@ -29,11 +29,9 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             }
           ),
         ],
-        // leading: IconButton(
+        // leading: IconButton( // Para ubicar los iconos del lado izquierdo del title
         //   icon: Icon(Icons.refresh_rounded), 
-        //   onPressed: () {
-
-        //   }
+        //   onPressed: () {}
         // ),
       ),
       body: Center( // Centrado Horizontal
@@ -50,13 +48,29 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
           ],
         )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          clickCounter ++;
-          
-          setState((){});
-        },
-        child: const Icon(Icons.plus_one)
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            shape: const StadiumBorder(),
+            onPressed: () {
+              clickCounter ++;
+              
+              setState((){});
+            },
+            child: const Icon(Icons.plus_one)
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            shape: const StadiumBorder(),
+            onPressed: () {
+              if (clickCounter > 0) clickCounter --;
+              
+              setState((){});
+            },
+            child: const Icon(Icons.exposure_minus_1_outlined)
+          )
+        ],
       )
     );
   }

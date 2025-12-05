@@ -28,7 +28,7 @@ class _CounterScreenState extends State<CounterScreen> {
               fontSize: 160,
               fontWeight: FontWeight.w100
             ),),
-            const Text('Clicks', style: TextStyle(
+            Text('Click${ clickCounter == 1 ? '' : 's'}', style: TextStyle(
               fontSize: 25
             ),)
           ],
@@ -37,6 +37,7 @@ class _CounterScreenState extends State<CounterScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           clickCounter ++;
+          
           setState((){});
         },
         child: const Icon(Icons.plus_one)

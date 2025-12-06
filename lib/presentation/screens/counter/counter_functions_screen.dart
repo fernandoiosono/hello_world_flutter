@@ -16,20 +16,20 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
 
   void _incrementCounter() => setState(() => clickCounter++);
 
-  void _decrementCounter() {
-    if (clickCounter == 0) return;
-
-    setState(() => clickCounter--);
-  }
+  void _decrementCounter() { if (clickCounter > 0) setState(() => clickCounter--); }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
         centerTitle: true,
         title: const Text(
           'Counter Functions',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold, 
+            color: Colors.white),
         ),
         backgroundColor: Colors.blue
       ),
@@ -42,12 +42,12 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
               '$clickCounter',
               style: const TextStyle(
                 fontSize: 160,
-                fontWeight: FontWeight.w100,
+                fontWeight: FontWeight.w500,
               ),
             ),
             Text(
               clickLabel,
-              style: const TextStyle(fontSize: 25),
+              style: const TextStyle(fontSize: 35),
             ),
           ],
         ),
